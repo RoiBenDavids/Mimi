@@ -82,7 +82,18 @@ function onFilterByKey(key) {
 }
 
 function toggleMeneuButtons(menu) {
+    
     if (gOpenMenue) {
+        if(gOpenMenue===menu){
+            var elMenue  =document.querySelector(gOpenMenue)
+            if(gOpenMenue === '.manage-text' ){
+                elMenue.classList.toggle('openG')
+                return
+                
+            } 
+            elMenue.classList.toggle('open')
+            return
+        }
         switch (gOpenMenue) {
             case '.managment-btns':
                 toggleMBtns();
@@ -94,37 +105,38 @@ function toggleMeneuButtons(menu) {
                 toggleStickers()
                 break;
             case '.share-and-download-container':
-                toggleSAD;
+                toggleSAD();
                 break;
         }
     }
+    
         gOpenMenue = menu;
         var elMenue  =document.querySelector(gOpenMenue)
         if(gOpenMenue === '.manage-text' ){
-            elMenue.classList.add('openG')
+            elMenue.classList.toggle('openG')
             return
             
         } 
-        elMenue.classList.add('open')
+        elMenue.classList.toggle('open')
     }
 
 
 
 function toggleMBtns() {
     var elMT = document.querySelector('.managment-btns')
-    elMT.classList.toggle('open')
+    elMT.classList.remove('open')
 }
 function toggleMTtns() {
     var elMT = document.querySelector('.manage-text')
-    elMT.classList.toggle('openG')
+    elMT.classList.remove('openG')
 }
 function toggleStickers() {
     var elMT = document.querySelector('.stickers-container')
-    elMT.classList.toggle('open')
+    elMT.classList.remove('open')
 }
 function toggleSAD() {
     var elMT = document.querySelector('.share-and-download-container')
-    elMT.classList.toggle('open')
+    elMT.classList.remove('open')
 }
 
 

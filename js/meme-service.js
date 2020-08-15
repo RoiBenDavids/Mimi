@@ -135,23 +135,6 @@ function createMeme(memeId) {
     }
 }
 
-// function addLine(txt) {
-//     gMeme.lines.push(
-//         {
-//             txt,
-//             font:'PoppinsL',
-//             size: 40,
-//             pos: {
-//                 h: 250,
-//                 w: gLastTextPos
-//             },
-//             color: 'yellow',
-//         }
-//     )
-//     gMeme.lines[gMeme.lines.length - 1].textWidth = getLineWidth(gMeme.lines[gMeme.lines.length - 1])
-//     gMeme.selectedLineIdx = gMeme.lines.length - 1;
-//     gLastTextPos += 40;
-// }
 
 function addLine(line) {
     gMeme.lines.push(line)
@@ -169,16 +152,22 @@ function createLine(txt, font) {
             w: 250
         },
         color: 'yellow',
+        align:'center'
     }
     return line;
 }
 
-function getLines() {
+function removeLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    changeSelection();
+}
 
+function getLines() {
     return gMeme.lines
 }
 
 function getTextPos() {
+    if(!gMeme.lines[0]) return
     return gMeme.lines[gMeme.selectedLineIdx].pos;
 }
 function setTextPos(h, w, side) {
@@ -197,33 +186,36 @@ function getSelectedLine() {
     return gMeme.selectedLineIdx;
 }
 
-function removeLine() {
-    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-    changeSelection();
-}
+
 
 function changeTextColor(color) {
+    if(!gMeme.lines[0])return
     gMeme.lines[gMeme.selectedLineIdx].color = color;
 
 }
 
 function changeTextSize(flag) {
+    if(!gMeme.lines[0])return
     let curSize = gMeme.lines[gMeme.selectedLineIdx].size;
-    gMeme.lines[gMeme.selectedLineIdx].size = flag ? curSize + 2 : curSize - 2;
+    gMeme.lines[gMeme.selectedLineIdx].size = flag ? curSize + 4 : curSize - 4;
 }
 
 function alignText(direction) {
-    const size = getCanvasSize()
+    if(!gMeme.lines[0])return
     if (direction === 'left') {
-        gMeme.lines[gMeme.selectedLineIdx].pos.h = 0 + (0.6 * gMeme.lines[gMeme.selectedLineIdx].textWidth);
+        gMeme.lines[gMeme.selectedLineIdx].pos.h = 0
+        gMeme.lines[gMeme.selectedLineIdx].align='left'
     } else if (direction === 'right') {
-        gMeme.lines[gMeme.selectedLineIdx].pos.h = size.h - (0.6 * gMeme.lines[gMeme.selectedLineIdx].textWidth);
+        gMeme.lines[gMeme.selectedLineIdx].pos.h = 490
+        gMeme.lines[gMeme.selectedLineIdx].align='right'
     } else {
-        gMeme.lines[gMeme.selectedLineIdx].pos.h = 250;
+        gMeme.lines[gMeme.selectedLineIdx].pos.h = 250
+        gMeme.lines[gMeme.selectedLineIdx].align='center'
     }
 }
 
 function changeFont(font) {
+    if(!gMeme.lines[0])return
     gMeme.lines[gMeme.selectedLineIdx].font = font;
 
 }
@@ -310,16 +302,3 @@ function dragSticker(){
     gStickersOnCanvas[gChoesenStickerIndex].pos.y = gCCLoc.y - gOffSetY;
 }
 
-
-// var gMeme = {
-//     selectedImgId: 5,
-//     selectedLineIdx: 0,
-//     lines: [
-//         {
-//             txt: 'I never eat Falafel',
-//             size: 20,
-//             align: 'left',
-//             color: 'red'
-//         }
-//     ]
-// }

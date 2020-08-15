@@ -1,4 +1,4 @@
-/* GOODO */
+/* GOODOS */
 *{
     box-sizing: border-box;
 }
@@ -256,6 +256,7 @@ background-color: #383b42;
     font-size: 1.5625rem ;
     color: #3d3d3d;
     width: 100%;
+    outline: none;
 }
 .delete-btn:hover{
     color:red
@@ -264,7 +265,9 @@ background-color: #383b42;
 .managment-btns{
     margin-bottom: 22px;
     flex-wrap: wrap;
-
+}
+.fonta:hover{
+    cursor: pointer;
 }
     .square{
         border:0;
@@ -274,8 +277,10 @@ background-color: #383b42;
         background-color: #26bf6c;
         border-radius: 10px;
         color: rgb(35, 35, 37);
-        
-
+        outline: none;
+    }
+    .square:active,.side-bar-managment-btns:active{
+        box-shadow:  0 1px 0 #a1f1c5,inset 1px 4px 0 #21a35c;
     }
 
 .manage-text{
@@ -297,11 +302,14 @@ background-color: #383b42;
 }
 .manage-text button,label{
     background-color: #26bf7f;
-    box-shadow: 1px 4px 0 #156946, inset 0 2px 0 #8cffcf;
+    box-shadow: 1px 4px 0 #2f9b6e, inset 0 2px 0 #8cffcf;
     border-radius: 10px;
     color: rgb(35, 35, 37);
-    
-    
+    outline: none;
+}
+.manage-text button:active,label:active,.side-bar-manage-text:active{
+    box-shadow:  0 1px 0 #8cffcf, inset 1px 4px 0 #2f9b6e;
+
 }
 .manage-text #fonts{
     border: 0;
@@ -406,40 +414,6 @@ background-color: #383b42;
     color: navy;
 }
 
-/* .icon::before{
-font-family: Fontello;
-  font-style: normal;
-  font-weight: normal;
-  speak: never;
- 
-  display: inline-block;
-  text-decoration: inherit;
-  width: 1em;
-  margin-right: .2em;
-  text-align: center;
-  content: '\0xe801';
-}
-.square::before{
-    font-family: Fontello;
-    content: '\0xe800';
-} */
-/* .download{
-    width: 213px;
-    height: 51px;
-    box-shadow: 1px 6px 0 #632687, inset 0 5px 0 #ffffff;
-    border-radius: 15px;
-    background-color: #8f44bb;
-    justify-content: center;
-
-} */
-
-
-
-
-.change-selection-btn{
-    transform: rotate(90deg);
-
-}
 .change-selection-btn::before{
     content: "\f362";
 }
@@ -498,7 +472,7 @@ font-family: Fontello;
     height: 155px;
     border-radius: 28px;
     background-color: #26bf7f;
-    box-shadow: 1px 4px 0 #156946, inset 0 2px 0 #8cffcf;
+    box-shadow: 1px 4px 0 #2f9b6e, inset 0 2px 0 #8cffcf;
     margin-bottom: 22px;
 }
 .side-bar-stickers-container{
@@ -506,9 +480,11 @@ font-family: Fontello;
     height: 91px;
     border-radius: 28px;
     background-color: #13ac98;
-    box-shadow: 1px 4px 0 #0b6357, inset 0 2px 0 #71ffec;
+    box-shadow: 1px 4px 0 #117e6f, inset 0 2px 0 #71ffec;
     margin-bottom: 25px;
-
+}
+.side-bar-stickers-container:active{
+    box-shadow: 0 1px 0 #71ffec, inset 1px 4px 0 #117e6f;
 }
 .side-bar-share-and-download-container{
     width: 57px;
@@ -516,8 +492,9 @@ font-family: Fontello;
     background-color: #139eac;
     box-shadow: 1px 4px 0 #0f7c86, inset 0 2px 0 #7ef4ff;
     border-radius: 28px;
-    
-
+}
+.side-bar-share-and-download-container:active{
+    box-shadow:  0 2px 0 #7ef4ff, 1px 4px 0 #0f7c86;
 }
 .side-bar-managment-btns::before{
     content: '\f031';

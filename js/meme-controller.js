@@ -19,11 +19,11 @@ var gCurFont;
 
 
 function initCanvas(imgId) {
+    gCurFont = 'Impact'
     gCanvas = document.getElementById('my-canvas');
     gCtx = gCanvas.getContext('2d')
     gCurMemeId = imgId;
     gCurrColor = 'brown';
-    gCurFont = 'Impact'
     createMeme(imgId);
     initSticCanvas();
     clearCanvas()
@@ -41,18 +41,20 @@ function renderMeme() {
     var img = new Image()
     img.src = gCurImg.url;
     img.onload = () => {
-        gCtx.drawImage(img, 0, 0, img.width, gCanvas.height, (gCanvas.width - img.width) / 2, (gCanvas.height - img.height) / 2, img.width, gCanvas.height)
+        gCtx.drawImage(img, 0, 0, img.width, img.height, (gCanvas.width - img.width) / 2, (gCanvas.height - img.height) / 2, img.width, img.height)
+
         if (gIsWriting) {
             renderLine(gCurrLine)
         }
         var linesToRender = getLines();
         if (linesToRender) {
-            linesToRender.forEach(line => renderLine(line))
+            linesToRender.forEach(line => {
+                renderLine(line)
+            })
         }
         renderStickersOnCanvas();
-
-
     }
+
 }
 
 function initSticCanvas() {
@@ -62,16 +64,18 @@ function initSticCanvas() {
 }
 
 function getLineWidth(line) {
-    gCtx.font = line.size + 'px ' + line.font;
+    gCtx.font = + line.font + ' ' + line.size + 'px ';
     return gCtx.measureText(line.txt).width
 }
 
 function renderLine(line) {
     gCtx.fillStyle = line.color;
-    gCtx.font = line.size + 'px ' + line.font
-    gCtx.textAlign = 'center'
+    gCtx.textAlign = line.align;
     gCtx.textBaseline = 'top';
+    gCtx.font = line.size + 'px ' + line.font
     gCtx.fillText(line.txt, line.pos.h, line.pos.w)
+
+
 
 }
 
@@ -79,7 +83,7 @@ function renderLine(line) {
 function onDrawText() {
     var currText = document.getElementById('meme-text').value;
     if (currText && !gIsWriting) {
-        gCurrLine = createLine(currText,gCurFont)
+        gCurrLine = createLine(currText, gCurFont)
         gIsWriting = true;
     }
     if (currText) gCurrLine.txt = currText;
@@ -90,7 +94,8 @@ function onDrawText() {
 
 }
 
-function onAddLine() {
+function onAddLine(ev) {
+    ev.preventDefault();
     addLine(gCurrLine);
     gIsWriting = false;
     document.getElementById('meme-text').value = ''
@@ -98,6 +103,7 @@ function onAddLine() {
 
 function onMoveText(direction) {
     const textPos = getTextPos()
+    if (!textPos) return
     switch (direction) {
         case 'up':
             setTextPos(textPos.h, textPos.w - 20, 'up');
@@ -173,6 +179,7 @@ function onUpload() {
 }
 
 function mouseEventListener(ev) {
+    if (gIsWriting) return
     var curCurPos = {
         x: ev.offsetX,
         y: ev.offsetY
@@ -184,7 +191,7 @@ function mouseEventListener(ev) {
         if (gCurrLine) gMovingText = true;
     }
     if (gMovingText) {
-        if(gCurrLine.type==='line')  dragText();
+        if (gCurrLine.type === 'line') dragText();
         else dragSticker();
         renderMeme();
     }
@@ -194,9 +201,6 @@ function onDragText(ev) {
     ev.preventDefault();
     gIsMouseUp = false;
 
-    // if(isThereText(gCurCurPos)){
-
-    // }
 }
 
 
@@ -281,7 +285,7 @@ function uploadImg(elForm, ev) {
 
 function doUploadImg(elForm, onSuccess) {
     var formData = new FormData(elForm);
-    
+
     fetch('https://ca-upload.com/here/upload.php', {
         method: 'POST',
         body: formData

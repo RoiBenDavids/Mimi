@@ -32,15 +32,15 @@
                     <!-- oninput="printText()" -->
                     <div class="side-bar-managment-btns align-center justify-center fonta side-bar"
                         onclick="toggleMeneuButtons('.managment-btns')"></div>
-                    <div class="managment-btns flex space-between">
+                    <form class="managment-btns flex space-between" onsubmit="onAddLine(event)">
                         <input type="text" id="meme-text" placeholder="Enter text"oninput="onDrawText()">
-                        <button class="add-btn square fonta" onclick="onAddLine()"></button>
-                        <button class="move-up-btn square fonta" onclick="onMoveText('up')"></button>
-                        <button class="move-down-btn square fonta" onclick="onMoveText('down')"></button>
-                        <button class="change-selection-btn square fonta" onclick="onChangeSelection()">
-                        </button>
-                        <button class="delete-btn square fonta" onclick="onDelete()"></button>
-                    </div>
+                        <button class="add-btn square fonta" ></button>
+                        <div class="move-up-btn square fonta flex justify-center align-center" onclick="onMoveText('up')"></div>
+                        <div class="move-down-btn square fonta flex justify-center align-center" onclick="onMoveText('down')"></div>
+                        <div class="change-selection-btn square fonta flex justify-center align-center" onclick="onChangeSelection()">
+                        </div>
+                        <div class="delete-btn square fonta flex justify-center align-center" onclick="onDelete()"></div>
+                    </form>
 
                     <div class="side-bar-manage-text align-center justify-center fonta side-bar"
                         onclick="toggleMeneuButtons('.manage-text')"></div>
@@ -48,8 +48,8 @@
                         <button class="inc-text-btn fonta" onclick="onChangeTextSize(true)"></button>
                         <button class="dec-text-btn fonta" onclick="onChangeTextSize(false)"></button>
                         <button class="align-left-btn fonta" onclick="onTextAlign('left')"></button>
-                        <button class="align-right-btn fonta" onclick="onTextAlign('right')"></button>
                         <button class="align-center-btn fonta" onclick="onTextAlign('center')"></button>
+                        <button class="align-right-btn fonta" onclick="onTextAlign('right')"></button>
                         <select name="fonts" id="fonts" onchange="onChangeFont(this.value)">
                             <option value="Impact">Impact</option>
                             <option value="PoppinsM">Poppins</option>
@@ -107,9 +107,9 @@
 
 
 
-    <script src="js/main.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/meme-controller.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
