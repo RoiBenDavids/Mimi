@@ -1,5 +1,6 @@
 'use strict'
 var gIsMBOpen = false;
+var gOpenMenue;
 
 
 
@@ -32,10 +33,10 @@ function openEditor(id) {
     elGallery.classList.add('hidden')
     elGallery.classList.add('move-gallery')
     elMemeArea.classList.remove('hidden')
-    setTimeout(function(){
+    setTimeout(function () {
         elMemeArea.classList.add('enter-editor')
-    },20)
-    
+    }, 20)
+
     initCanvas(id);
 
 }
@@ -44,15 +45,15 @@ function goToGallery() {
     var elGallery = document.querySelector('.gallery-area');
     var elMemeArea = document.querySelector('.meme-area');
     elMemeArea.classList.remove('enter-editor')
-    setTimeout(function(){
+    setTimeout(function () {
         elMemeArea.classList.add('hidden')
         elGallery.classList.remove('hidden')
-    },400)
-    setTimeout(function(){
+    }, 400)
+    setTimeout(function () {
         elGallery.classList.remove('move-gallery')
 
-    },500)
-    
+    }, 500)
+
 
 }
 
@@ -80,17 +81,35 @@ function onFilterByKey(key) {
 
 }
 
-// function toggleMBtns() {
-//     var elMB = document.querySelector('.managment-btns')
-//     if (!gIsMBOpen) {
-//         elMB.style = "right:100px ; opacity: 1;"
-//         gIsMBOpen = true;
-//     } else {
-//         elMB.style = "right:-100% ; opacity: 0;"
-//         gIsMBOpen = false;
+function toggleMeneuButtons(menu) {
+    if (gOpenMenue) {
+        switch (gOpenMenue) {
+            case '.managment-btns':
+                toggleMBtns();
+                break;
+            case '.manage-text':
+                toggleMTtns();
+                break;
+            case '.stickers-container':
+                toggleStickers()
+                break;
+            case '.share-and-download-container':
+                toggleSAD;
+                break;
+        }
+    }
+        gOpenMenue = menu;
+        var elMenue  =document.querySelector(gOpenMenue)
+        if(gOpenMenue === '.manage-text' ){
+            elMenue.classList.add('openG')
+            return
+            
+        } 
+        elMenue.classList.add('open')
+    }
 
-//     }
-// }
+
+
 function toggleMBtns() {
     var elMT = document.querySelector('.managment-btns')
     elMT.classList.toggle('open')

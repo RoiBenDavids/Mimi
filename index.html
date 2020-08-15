@@ -31,7 +31,7 @@
 
                     <!-- oninput="printText()" -->
                     <div class="side-bar-managment-btns align-center justify-center fonta side-bar"
-                        onclick="toggleMBtns()"></div>
+                        onclick="toggleMeneuButtons('.managment-btns')"></div>
                     <div class="managment-btns flex space-between">
                         <input type="text" id="meme-text" placeholder="Enter text"oninput="onDrawText()">
                         <button class="add-btn square fonta" onclick="onAddLine()"></button>
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="side-bar-manage-text align-center justify-center fonta side-bar"
-                        onclick="toggleMTtns()"></div>
+                        onclick="toggleMeneuButtons('.manage-text')"></div>
                     <div class="manage-text grid">
                         <button class="inc-text-btn fonta" onclick="onChangeTextSize(true)"></button>
                         <button class="dec-text-btn fonta" onclick="onChangeTextSize(false)"></button>
@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="side-bar-stickers-container align-center justify-center fonta side-bar"
-                        onclick="toggleStickers()"></div>
+                        onclick="toggleMeneuButtons('.stickers-container')"></div>
                     <div class="stickers-container flex justify-center align-center ">
                         <div class="toggle-stickers-left fonta" onclick="onMoveStickers(true)"></div>
                         <canvas id="sticker-canvas" height="85" width="360" onclick="onChooseSticker(event)"></canvas>
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="side-bar-share-and-download-container align-center justify-center fonta side-bar"
-                        onclick="toggleSAD()"></div>
+                        onclick="toggleMeneuButtons('.share-and-download-container')"></div>
                     <div class="share-and-download-container flex space-between">
                         <form form action="" method="POST" class=" flex align-center" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                             <input name="img" id="imgData" type="hidden" />

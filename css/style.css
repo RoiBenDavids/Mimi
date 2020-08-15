@@ -1,3 +1,4 @@
+/* GOODO */
 *{
     box-sizing: border-box;
 }
@@ -636,13 +637,22 @@ font-family: Fontello;
     }
 }
 @media (max-width: 570px){
+    .navbar{
+        justify-content: space-around;
+    }
+    .navbar h1{
+        margin:0 40px;
+    }
+    
+    
     .meme-area{
         flex-direction: column;
+        /* max-height: 0.2vh; */
     }
     .form-decoration{
         width: 350px;
         height: 90px;
-        margin: 0 auto;
+        margin: 170px auto;
     }
     .meme-form{
         flex-direction: row;
@@ -679,16 +689,16 @@ font-family: Fontello;
         grid-column-gap: 20px;
     }
     .managment-btns{
-        top:0px;
+        top:380px;
     }
     .manage-text{
-        top: 160px;
+        top: 400px;
     }
     .stickers-container{
-        top:310px;
+        top:410px;
     }
     .share-and-download-container{
-        top:550px;
+        top:430px;
     }
 
     
