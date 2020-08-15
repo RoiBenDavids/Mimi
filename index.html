@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimi</title>
+    <script src="https://kit.fontawesome.com/f913afa239.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="init()">
+    <!-- <div class="game-area flex flex-column"> -->
+    <nav class="navbar flex space-between align-center container">
+        <h1 onclick="goToGallery()">Mimi</h1>
+        <div class="navbar-options flex">
+            <h2>Gallery</h2>
+            <h2>About</h2>
+            <i class="fab fa-accessible-icon"></i>
+        </div>
+    </nav>
+    <main>
+        <section class="meme-area flex space-between align-center hidden">
+            <div class="canvas-area">
+                <canvas id="my-canvas" height="546" width="480" onmousemove="mouseEventListener(event)"
+                    onmousedown="mouseChange(event)" onmouseup="mouseChange(event)"></canvas>
+            </div>
+
+            <div class="form-decoration">
+                <div class="meme-form flex flex-column">
+
+                    <!-- oninput="printText()" -->
+                    <div class="side-bar-managment-btns align-center justify-center fonta side-bar"
+                        onclick="toggleMBtns()"></div>
+                    <div class="managment-btns flex space-between">
+                        <input type="text" id="meme-text" placeholder="Enter text"oninput="onDrawText()">
+                        <button class="add-btn square fonta" onclick="onAddLine()"></button>
+                        <button class="move-up-btn square fonta" onclick="onMoveText('up')"></button>
+                        <button class="move-down-btn square fonta" onclick="onMoveText('down')"></button>
+                        <button class="change-selection-btn square fonta" onclick="onChangeSelection()">
+                        </button>
+                        <button class="delete-btn square fonta" onclick="onDelete()"></button>
+                    </div>
+
+                    <div class="side-bar-manage-text align-center justify-center fonta side-bar"
+                        onclick="toggleMTtns()"></div>
+                    <div class="manage-text grid">
+                        <button class="inc-text-btn fonta" onclick="onChangeTextSize(true)"></button>
+                        <button class="dec-text-btn fonta" onclick="onChangeTextSize(false)"></button>
+                        <button class="align-left-btn fonta" onclick="onTextAlign('left')"></button>
+                        <button class="align-right-btn fonta" onclick="onTextAlign('right')"></button>
+                        <button class="align-center-btn fonta" onclick="onTextAlign('center')"></button>
+                        <select name="fonts" id="fonts" onchange="onChangeFont(this.value)">
+                            <option value="Impact">Impact</option>
+                            <option value="PoppinsM">Poppins</option>
+                            <option value="pacifico">Pacifico</option>
+                        </select>
+                        <input class="not-visual" type="color" id="text-color" oninput="onChangeTextColor()">
+                        <label class="color-label fonta flex align-center justify-center" for="text-color"></label>
+                    </div>
+
+                    <div class="side-bar-stickers-container align-center justify-center fonta side-bar"
+                        onclick="toggleStickers()"></div>
+                    <div class="stickers-container flex justify-center align-center ">
+                        <div class="toggle-stickers-left fonta" onclick="onMoveStickers(true)"></div>
+                        <canvas id="sticker-canvas" height="85" width="360" onclick="onChooseSticker(event)"></canvas>
+                        <div class="toggle-stickers-right fonta" onclick="onMoveStickers(false)"
+                            onmousedown="onMoveStickers(false)"></div>
+                    </div>
+
+                    <div class="side-bar-share-and-download-container align-center justify-center fonta side-bar"
+                        onclick="toggleSAD()"></div>
+                    <div class="share-and-download-container flex space-between">
+                        <form form action="" method="POST" class=" flex align-center" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                            <input name="img" id="imgData" type="hidden" />
+                            <button class="share btn bt2" type="submit">Share</button>
+                        </form>
+                        <div class="share-container"></div>
+                        <a class="download bt2 flex align-center" href="#" onclick="onDownloadMeme(this)"
+                            download="mimi.jpg">Download</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="gallery-area container ">
+            <div class="game-bar flex align-center space-between">
+                <input type="search" placeholder="search">
+                <div class="game-bar-side flex space-between">
+                    <span class="keywords-container flex align-center space-evenly"></span>
+                    <!-- <div class="keywords-container"></div> -->
+                    <button onclick="moveKewordsIdx()">More</button>
+                </div>
+            </div>
+
+            <div class="gallery grid">
+            </div>
+        </section>
+
+       
+    </main>
+    <!-- </div> -->
+
+
+
+    <script src="js/main.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/meme-controller.js"></script>
+</body>
+
+</html>
